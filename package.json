@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "moralis:sync": "yarn moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain tsqvp0nlvyjr.usemoralis.com --frpcPath ./frp/frpc"
   },
   "dependencies": {
     "moralis": "^1.9.0",
+    "moralis-admin-cli": "^2.1.16",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

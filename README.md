@@ -5,6 +5,10 @@
     1. You can list your NFT on the marketplace
     
 
+Moralis: How do we tell it to listen to our events? 
+
+1. Connect it to our blockchain (hardhat localhost blockchain)
+2. Which contract, which events, and what to do when it hears those events. 
 
 
 
