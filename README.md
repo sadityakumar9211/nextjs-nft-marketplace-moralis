@@ -1,3 +1,22 @@
+1. Homepage
+    1. Show recently listen NFTs
+    2. If not, you can buy the listing
+2. Sell Page
+    1. You can list your NFT on the marketplace
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
