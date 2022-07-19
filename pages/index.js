@@ -1,6 +1,7 @@
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { useMoralisQuery } from "react-moralis"
+import NFTBox from "../components/NFTBox"
 
 export default function Home() {
     //How do we show the recently listed NFTs?
@@ -57,6 +58,17 @@ export default function Home() {
                             Price: {price}. NftAddress: {nftAddress}. TokenId:{" "}
                             {tokenId}. Seller: {seller}. CreatedAt:{" "}
                             {JSON.stringify(createdAt)}
+
+                            <NFTBox 
+                              key = {`${nftAddress}-${tokenId}`}
+                              price = {price}
+                              nftAddress = {nftAddress}
+                              tokenId = {tokenId}
+                              marketplaceAddress = {marketplaceAddress}
+                              seller = {seller}
+                              createdAt = {createdAt} 
+                              
+                            />
                         </div>
                     )
                 })
