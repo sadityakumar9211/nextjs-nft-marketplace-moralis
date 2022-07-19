@@ -3,17 +3,21 @@ import { useWeb3Contract, useMoralis } from "react-moralis"
 import nftMarketplaceAbi from "../constants/nftMarketplace.json"
 import nftAbi from "../constants/BasicNft.json"
 import Image from "next/image"
+import { Card } from "web3uikit"
+import { ethers } from "ethers"
 
 export default function NFTBox({
     price,
     nftAddress,
     tokenId,
     marketplaceAddress,
-    createdAt,
     seller,
 }) {
     const { isWeb3Enabled } = useMoralis()
     const [imageURI, setImageURI] = useState("")
+    const [tokenName, setTokenName] = useState("")
+    const [tokenDescription, setTokenDescription] = useState("")
+
     const { runContractFunction: getTokenURI } = useWeb3Contract({
         abi: nftAbi,
         contractAddress: nftAddress,
@@ -49,7 +53,8 @@ export default function NFTBox({
                 "https://ipfs.io/ipfs/"
             )
             setImageURI(imageURIURL)
-            console.log(imageURI)
+            setTokenName(tokenURIResponse.name)
+            setTokenDescription(tokenURIResponse.description)
         }
     }
 
@@ -63,7 +68,39 @@ export default function NFTBox({
         <div>
             <div>
                 {imageURI ? (
-                    <Image loader={() => imageURI} src={imageURI} height="200" width="200" />
+                    <div className="p-4">
+                        <Card title={tokenName} description={tokenDescription}>
+                            <div className="p-2">
+                                <div className="flex flex-col items-end gap-2">
+                                    <div>#{tokenId}</div>
+                                    <div className="italic text-sm">
+                                        Owned by{" "}
+                                        <span className="bg-slate-600 p-1 rounded text-gray-50">
+                                            {seller}
+                                        </span>
+                                    </div>
+                                    <div className="self-center">
+                                        <Image
+                                            loader={() => imageURI}
+                                            src={imageURI}
+                                            height="200"
+                                            width="200"
+                                        />
+                                    </div>
+                                    <div className="self-center">
+                                        <span className="p-1 px-2 font-bold bg-slate-500 rounded-xl text-gray-50">
+                                            Valued at:
+                                            {ethers.utils.formatUnits(
+                                                price,
+                                                "ether"
+                                            )}
+                                            ETH
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
                 ) : (
                     <div>Loading...</div>
                 )}
