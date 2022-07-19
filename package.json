@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "moralis:sync": "yarn moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain tsqvp0nlvyjr.usemoralis.com --frpcPath ./frp/frpc"
+    "moralis:sync": "yarn moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain tsqvp0nlvyjr.usemoralis.com --frpcPath ./frp/frpc",
+    "moralis:cloud": "moralis-admin-cli watch-cloud-folder  --moralisSubdomain tsqvp0nlvyjr.usemoralis.com --autoSave 1 --moralisCloudfolder ./cloudFunctions"
   },
   "dependencies": {
     "moralis": "^1.9.0",
