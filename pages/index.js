@@ -1,5 +1,6 @@
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
+import { useMoralisQuery } from "react-moralis"
 
 export default function Home() {
     //How do we show the recently listed NFTs?
@@ -17,6 +18,49 @@ export default function Home() {
     // They are working open sourcing their code.
     // Feature Richness
 
-    
-    return <div className={styles.container}>Hi</div>
+    //How do we show the recently listed NFTs?
+    // -by querying the moralis database and using the ActiveItem table
+
+    const { data: listedNfts, isFetching: fetchingListedNfts } =
+        useMoralisQuery(
+            //table name
+            //function for the query
+            "ActiveItem",
+            (query) => {
+                return query.limit(10).descending("tokenId")
+            } //10 latest tokens
+        )
+
+    if (listedNfts.length != 0) {
+        console.log(listedNfts)
+    } else {
+        console.log("listed NFT is empty")
+    }
+
+    return (
+        <div className={styles.container}>
+            {fetchingListedNfts ? (
+                <div>Loading...</div>
+            ) : (
+                listedNfts.map((nft) => {
+                    console.log(nft.attributes)
+                    const {
+                        price,
+                        nftAddress,
+                        tokenId,
+                        marketplaceAddress,
+                        seller,
+                        createdAt,
+                    } = nft.attributes
+                    return (
+                        <div>
+                            Price: {price}. NftAddress: {nftAddress}. TokenId:{" "}
+                            {tokenId}. Seller: {seller}. CreatedAt:{" "}
+                            {JSON.stringify(createdAt)}
+                        </div>
+                    )
+                })
+            )}
+        </div>
+    )
 }
