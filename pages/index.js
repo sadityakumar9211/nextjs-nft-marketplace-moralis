@@ -47,7 +47,6 @@ export default function Home() {
                         <div>Loading...</div>
                     ) : (
                         listedNfts.map((nft) => {
-                            console.log(nft.attributes)
                             const {
                                 price,
                                 nftAddress,
