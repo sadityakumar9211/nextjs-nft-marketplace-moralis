@@ -13,8 +13,8 @@ const moralisChainId = chainId=="31337"? "1337": chainId
 //watching of EVENTS of which contract
 const contractAddress = contractAddresses[chainId]["NftMarketplace"][0]
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const appId = process.env.NEXT_PUBLIC_APP_ID 
+const serverUrl = process.env.SERVER_URL
+const appId = process.env.APP_ID 
 const masterKey = process.env.masterKey
 
 async function main() {
